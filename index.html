@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProOrthopedia — Prosthetics & Orthotics Knowledge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --yellow:       #f5c800;
+  --yellow-dark:  #c9a200;
+  --yellow-light: #fffbe6;
+  --yellow-mid:   #fde96a;
+  --navy:         #0d1f35;
+  --navy-2:       #162b47;
+  --white:        #ffffff;
+  --off-white:    #f9f9f9;
+  --gray-50:      #f2f2f2;
+  --gray-100:     #e0e0e0;
+  --gray-300:     #aaaaaa;
+  --gray-500:     #666666;
+  --gray-700:     #333333;
+  --border:       #e8e8e8;
+  --border-y:     #f0d800;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--off-white);
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  background: var(--yellow);
+  padding: 7px 0;
+}
+
+.topbar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.topbar-date {
+  font-size: 11px;
+  color: var(--navy);
+  font-family: 'DM Mono', monospace;
+  opacity: 0.7;
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+  background: var(--navy);
+  padding: 24px 24px 20px;
+  border-bottom: 4px solid var(--yellow);
+}
+
+.masthead-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: center; gap: 14px; }
+
+.brand-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--yellow);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  color: var(--white);
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.brand-name span { color: var(--yellow); }
+
+.brand-tagline {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+.masthead-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 9px 14px;
+  min-width: 240px;
+}
+
+.masthead-search input {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  color: var(--white);
+  background: none;
+  border: none;
+  outline: none;
+  flex: 1;
+}
+
+.masthead-search input::placeholder { color: rgba(255,255,255,0.35); }
+
+/* ── NAV ── */
+.nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links { display: flex; }
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+  padding: 14px 18px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: 'DM Sans', sans-serif;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.nav-link:hover { color: var(--navy); }
+.nav-link.active { color: var(--navy); border-bottom-color: var(--yellow); font-weight: 600; }
+
+.nav-write {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  background: var(--yellow);
+  color: var(--navy);
+  border: none;
+  padding: 8px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.nav-write:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+
+/* ── LAYOUT ── */
+.page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+.view { display: none; animation: fadeUp 0.25s ease; }
+.view.active { display: block; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+/* ── FEED ── */
+.feed { padding: 28px 0; }
+
+.feed-layout { display: grid; grid-template-columns: 1fr 290px; gap: 28px; align-items: start; }
+
+/* Stats */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 3px solid var(--yellow);
+}
+
+.stat-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: var(--yellow-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.stat-n { font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1; display: block; }
+.stat-l { font-size: 10.5px; color: var(--gray-300); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; display: block; }
+
+/* Hero post */
+.hero-post {
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--white);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.hero-post:hover { box-shadow: 0 8px 32px rgba(245,200,0,0.18); transform: translateY(-2px); }
+
+.hero-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  background: var(--yellow-light);
+}
+
+.hero-img-placeholder {
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-img-placeholder .ph-icon { font-size: 40px; }
+.hero-img-placeholder .ph-text { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 1px; text-transform: uppercase; }
+
+.hero-body { padding: 22px 24px 22px; }
+
+.hero-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--yellow);
+  color: var(--navy);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: 10px;
+  transition: color 0.15s;
+}
+
+.hero-post:hover .hero-title { color: var(--yellow-dark); }
+
+.hero-excerpt {
+  font-size: 13.5px;
+  color: var(--gray-500);
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--gray-300);
+}
+
+.meta-dot { width: 3px; height: 3px; background: var(--gray-100); border-radius: 50%; }
+
+/* Post cards grid */
+.posts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.post-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+
+.post-card:hover { box-shadow: 0 6px 24px rgba(245,200,0,0.15); transform: translateY(-2px); }
+
+.post-card-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  background: var(--yellow-light);
+}
+
+.post-card-img-placeholder {
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.post-card-body { padding: 14px 16px 16px; }
+
+.post-card-cat {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--navy);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.post-card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 15px;
+  color: var(--navy);
+  line-height: 1.35;
+  margin-bottom: 6px;
+  transition: color 0.15s;
+}
+
+.post-card:hover .post-card-title { color: var(--yellow-dark); }
+
+.post-card-excerpt {
+  font-size: 12.5px;
+  color: var(--gray-500);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-card-meta {
+  font-size: 11px;
+  color: var(--gray-300);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.read-link {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--yellow-dark);
+  letter-spacing: 0.3px;
+}
+
+/* Filter chips */
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 15px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filter-chip:hover { border-color: var(--yellow); color: var(--navy); }
+.filter-chip.active { background: var(--yellow); border-color: var(--yellow); color: var(--navy); font-weight: 600; }
+
+/* Section heading */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-head-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.section-count { font-size: 12px; color: var(--gray-300); }
+
+/* Sidebar */
+.sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+.sidebar-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sidebar-head {
+  padding: 11px 16px;
+  background: var(--navy);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-body { padding: 14px 16px; }
+
+.glossary-item {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--gray-50);
+}
+
+.glossary-item:last-child { border-bottom: none; }
+
+.glossary-term {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.glossary-term::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--yellow);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.glossary-def { font-size: 11.5px; color: var(--gray-500); line-height: 1.55; padding-left: 12px; }
+
+.cat-list { display: flex; flex-direction: column; gap: 6px; }
+
+.cat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+  transition: background 0.15s;
+  border: 1.5px solid var(--border);
+}
+
+.cat-row:hover { background: var(--yellow-light); border-color: var(--yellow); }
+
+.cat-count-badge {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  background: var(--yellow);
+  color: var(--navy);
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 10px;
+}
+
+/* ── WRITE VIEW ── */
+.write-view { padding: 28px 0; max-width: 760px; margin: 0 auto; }
+
+.write-header { margin-bottom: 24px; }
+
+.write-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.write-header h1 span { color: var(--yellow-dark); }
+
+.write-header p { font-size: 14px; color: var(--gray-500); }
+
+.write-form {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 30px;
+  border-top: 4px solid var(--yellow);
+}
+
+.form-row { margin-bottom: 20px; }
+
+.form-label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--navy);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--gray-700);
+  background: var(--off-white);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(245,200,0,0.15);
+  background: var(--white);
+}
+
+.form-textarea { min-height: 180px; resize: vertical; line-height: 1.75; }
+
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* Image upload area */
+.img-upload-area {
+  border: 2px dashed var(--yellow);
+  border-radius: 10px;
+  background: var(--yellow-light);
+  padding: 28px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s;
+  position: relative;
+}
+
+.img-upload-area:hover { background: #fff8cc; }
+
+.img-upload-area input[type=file] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.img-upload-icon { font-size: 32px; margin-bottom: 8px; }
+
+.img-upload-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.img-upload-sub { font-size: 11.5px; color: var(--gray-500); }
+
+.img-preview {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: none;
+  margin-top: 12px;
+  border: 2px solid var(--yellow);
+}
+
+.publish-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  background: var(--yellow);
+  color: var(--navy);
+  border: none;
+  padding: 13px 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: 0.3px;
+}
+
+.publish-btn:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+
+.success-banner {
+  display: none;
+  margin-top: 16px;
+  background: var(--yellow-light);
+  border: 1.5px solid var(--yellow);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13.5px;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* ── ABOUT VIEW ── */
+.about-view { padding: 28px 0; }
+
+.about-hero {
+  background: var(--navy);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 28px;
+  border-bottom: 4px solid var(--yellow);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero::after {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(245,200,0,0.08);
+  pointer-events: none;
+}
+
+.about-hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  color: var(--white);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.about-hero h1 span { color: var(--yellow); }
+
+.about-hero p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.75; max-width: 640px; }
+
+.about-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+
+.about-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  border-top: 3px solid var(--yellow);
+}
+
+.about-card-icon { font-size: 28px; margin-bottom: 12px; }
+
+.about-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 17px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.about-card p { font-size: 13px; color: var(--gray-500); line-height: 1.7; }
+
+.disclaimer {
+  background: var(--yellow-light);
+  border: 1.5px solid var(--yellow);
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--navy);
+  line-height: 1.65;
+}
+
+.disclaimer strong { display: block; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; color: var(--yellow-dark); }
+
+/* ── POST VIEW ── */
+.post-view { padding: 28px 0; }
+
+.post-view-layout { display: grid; grid-template-columns: 1fr 270px; gap: 28px; align-items: start; }
+
+.post-article {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.post-article-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.post-article-img-placeholder {
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(135deg, var(--navy), #1e3a5f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}
+
+.post-article-header { padding: 28px 32px 20px; border-bottom: 1px solid var(--border); }
+
+.post-article-body { padding: 28px 32px; }
+
+.back-btn {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-300);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  padding: 0;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s;
+}
+
+.back-btn:hover { color: var(--navy); }
+
+.pv-cat {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.pv-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  color: var(--navy);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.pv-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--gray-300);
+  flex-wrap: wrap;
+}
+
+.post-body-text {
+  font-size: 15px;
+  color: var(--gray-500);
+  line-height: 1.9;
+}
+
+.post-body-text p { margin-bottom: 1.2rem; }
+
+.post-body-text p:first-child::first-letter {
+  font-family: 'DM Serif Display', serif;
+  font-size: 54px;
+  font-weight: 400;
+  float: left;
+  line-height: 0.88;
+  margin: 5px 10px 0 0;
+  color: var(--yellow-dark);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  border-top: 4px solid var(--yellow);
+  padding: 28px 24px;
+  margin-top: 40px;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: var(--white);
+}
+
+.footer-brand span { color: var(--yellow); }
+.footer-tagline { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; }
+
+.footer-links { display: flex; gap: 20px; }
+
+.footer-link {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.45);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.footer-link:hover { color: var(--yellow); }
+
+.footer-disclaimer {
+  width: 100%;
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  line-height: 1.6;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  background: var(--white);
+  border: 1.5px dashed var(--yellow);
+  border-radius: 14px;
+  grid-column: 1 / -1;
+}
+
+.empty-state-icon { font-size: 40px; margin-bottom: 12px; }
+.empty-state-text { font-size: 14px; color: var(--gray-500); margin-bottom: 14px; }
+.empty-state-btn {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--navy);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 9px 22px;
+  border-radius: 7px;
+  cursor: pointer;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .feed-layout, .post-view-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .stats-row { grid-template-columns: repeat(2,1fr); }
+  .about-cards { grid-template-columns: 1fr; }
+  .form-row-2 { grid-template-columns: 1fr; }
+  .posts-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-tag">🦿 ProOrthopedia · Prosthetics & Orthotics</div>
+    <div class="topbar-date" id="topbar-date"></div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brand">
+      <div class="brand-icon">🦾</div>
+      <div>
+        <div class="brand-name">Pro<span>Orthopedia</span></div>
+        <div class="brand-tagline">Prosthetics · Orthotics · Rehabilitation</div>
+      </div>
+    </div>
+    <div class="masthead-search">
+      <span style="color:rgba(255,255,255,0.4); font-size:16px;">⌕</span>
+      <input type="text" id="search-input" placeholder="Search articles..." oninput="handleSearch()" />
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-links">
+      <button class="nav-link active" onclick="showView('feed')">Articles</button>
+      <button class="nav-link" onclick="showView('about')">About</button>
+      <button class="nav-link" onclick="showView('privacy')">Privacy Policy</button>
+    </div>
+    <button class="nav-write" onclick="showView('write')">+ Post Article</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- FEED -->
+<div class="view active" id="view-feed">
+<div class="page-wrap">
+<div class="feed">
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon">📄</div>
+      <div><span class="stat-n" id="count-total">0</span><span class="stat-l">Articles</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🏥</div>
+      <div><span class="stat-n">5</span><span class="stat-l">Categories</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🔬</div>
+      <div><span class="stat-n">📖</span><span class="stat-l">Knowledge</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🌍</div>
+      <div><span class="stat-n">Free</span><span class="stat-l">Always</span></div>
+    </div>
+  </div>
+
+  <div class="feed-layout">
+    <div class="feed-main">
+
+      <div id="hero-section"></div>
+
+      <div class="section-head" style="margin-top: 20px;">
+        <span class="section-head-title">All Articles</span>
+        <span class="section-count" id="result-count"></span>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-chip active" onclick="filterPosts('All',this)">All</button>
+        <button class="filter-chip" onclick="filterPosts('Prosthetics',this)">Prosthetics</button>
+        <button class="filter-chip" onclick="filterPosts('Orthotics',this)">Orthotics</button>
+        <button class="filter-chip" onclick="filterPosts('Clinical',this)">Clinical</button>
+        <button class="filter-chip" onclick="filterPosts('Research',this)">Research</button>
+        <button class="filter-chip" onclick="filterPosts('Rehab',this)">Rehab</button>
+      </div>
+
+      <div class="posts-grid" id="posts-grid"></div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-head">📂 Categories</div>
+        <div class="sidebar-body">
+          <div class="cat-list">
+            <div class="cat-row" onclick="filterPosts('Prosthetics',null)">🦿 Prosthetics <span class="cat-count-badge" id="c-prosthetics">0</span></div>
+            <div class="cat-row" onclick="filterPosts('Orthotics',null)">🦺 Orthotics <span class="cat-count-badge" id="c-orthotics">0</span></div>
+            <div class="cat-row" onclick="filterPosts('Clinical',null)">🏥 Clinical <span class="cat-count-badge" id="c-clinical">0</span></div>
+            <div class="cat-row" onclick="filterPosts('Research',null)">🔬 Research <span class="cat-count-badge" id="c-research">0</span></div>
+            <div class="cat-row" onclick="filterPosts('Rehab',null)">🏃 Rehab <span class="cat-count-badge" id="c-rehab">0</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-head">📖 Quick Glossary</div>
+        <div class="sidebar-body">
+          <div class="glossary-item">
+            <div class="glossary-term">Residual Limb</div>
+            <div class="glossary-def">The remaining portion of a limb after amputation.</div>
+          </div>
+          <div class="glossary-item">
+            <div class="glossary-term">Socket</div>
+            <div class="glossary-def">Custom-fitted interface between the residual limb and prosthesis.</div>
+          </div>
+          <div class="glossary-item">
+            <div class="glossary-term">AFO</div>
+            <div class="glossary-def">Ankle-Foot Orthosis — controls ankle and foot motion.</div>
+          </div>
+          <div class="glossary-item">
+            <div class="glossary-term">K-Level</div>
+            <div class="glossary-def">Medicare Functional Classification (K0–K4) for ambulatory potential.</div>
+          </div>
+          <div class="glossary-item">
+            <div class="glossary-term">Pylon</div>
+            <div class="glossary-def">Structural tube connecting socket to the prosthetic foot.</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+</div>
+</div>
+</div>
+
+<!-- WRITE -->
+<div class="view" id="view-write">
+<div class="page-wrap">
+<div class="write-view">
+  <div class="write-header">
+    <h1>Post a New <span>Article</span></h1>
+    <p>Share your P&O knowledge — include an image and clinical insights for the community.</p>
+  </div>
+  <div class="write-form">
+
+    <div class="form-row">
+      <label class="form-label">📷 Article Image</label>
+      <div class="img-upload-area" id="upload-area">
+        <input type="file" id="img-file" accept="image/*" onchange="previewImage(event)" />
+        <div id="upload-placeholder">
+          <div class="img-upload-icon">🖼️</div>
+          <div class="img-upload-text">Click to upload an image</div>
+          <div class="img-upload-sub">JPG, PNG, WebP — recommended 1200×600px</div>
+        </div>
+        <img id="img-preview" class="img-preview" alt="Preview" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">Article Title</label>
+      <input class="form-input" id="inp-title" placeholder="e.g. Dynamic Response Feet: A Clinical Selection Guide" />
+    </div>
+
+    <div class="form-row-2">
+      <div class="form-row" style="margin:0">
+        <label class="form-label">Category</label>
+        <select class="form-select" id="inp-cat">
+          <option>Prosthetics</option>
+          <option>Orthotics</option>
+          <option>Clinical</option>
+          <option>Research</option>
+          <option>Rehab</option>
+        </select>
+      </div>
+      <div class="form-row" style="margin:0">
+        <label class="form-label">Author / Credentials</label>
+        <input class="form-input" id="inp-author" placeholder="e.g. Dr. A. Khan, CPO" />
+      </div>
+    </div>
+
+    <div class="form-row" style="margin-top:20px">
+      <label class="form-label">Article Body</label>
+      <textarea class="form-textarea" id="inp-body" placeholder="Write your article here. Paragraphs separated by a blank line will be formatted correctly..."></textarea>
+    </div>
+
+    <button class="publish-btn" onclick="publishPost()">🚀 Publish Article</button>
+    <div class="success-banner" id="success-banner">✅ Your article has been published!</div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<div class="view" id="view-about">
+<div class="page-wrap">
+<div class="about-view">
+  <div class="about-hero">
+    <h1>The P&O Knowledge Hub<br>by <span>ProOrthopedia</span></h1>
+    <p>A dedicated knowledge base for prosthetics and orthotics professionals, students, and researchers. Real clinical insights, published by real practitioners — all in one place.</p>
+  </div>
+  <div class="about-cards">
+    <div class="about-card">
+      <div class="about-card-icon">🦿</div>
+      <h3>Prosthetics</h3>
+      <p>Upper and lower limb prostheses, socket design, componentry, gait analysis, and fitting protocols.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">🦺</div>
+      <h3>Orthotics</h3>
+      <p>Spinal, lower and upper limb orthoses — from AFOs and KAFOs to scoliosis bracing and functional splinting.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">🏃</div>
+      <h3>Rehabilitation</h3>
+      <p>Post-amputation rehab, gait training, outcome measures, and interdisciplinary care for P&O patients.</p>
+    </div>
+  </div>
+  <div class="disclaimer">
+    <strong>⚠ Clinical Disclaimer</strong>
+    Content on ProOrthopedia is for educational purposes for healthcare professionals and students only. It does not constitute medical advice. All clinical decisions must be made by qualified practitioners based on individual patient assessment.
+  </div>
+</div>
+</div>
+</div>
+
+<!-- POST VIEW -->
+<div class="view" id="view-post">
+<div class="page-wrap">
+<div class="post-view">
+  <div class="post-view-layout">
+    <div class="post-article">
+      <div id="pv-img-container"></div>
+      <div class="post-article-header">
+        <button class="back-btn" onclick="showView('feed')">← Back to Articles</button>
+        <div class="pv-cat" id="pv-cat"></div>
+        <div class="pv-title" id="pv-title"></div>
+        <div class="pv-meta" id="pv-meta"></div>
+      </div>
+      <div class="post-article-body">
+        <div class="post-body-text" id="pv-body"></div>
+      </div>
+    </div>
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-head">📖 Quick Glossary</div>
+        <div class="sidebar-body">
+          <div class="glossary-item"><div class="glossary-term">Residual Limb</div><div class="glossary-def">Remaining portion of a limb after amputation.</div></div>
+          <div class="glossary-item"><div class="glossary-term">Socket</div><div class="glossary-def">Custom interface between residual limb and prosthesis.</div></div>
+          <div class="glossary-item"><div class="glossary-term">AFO</div><div class="glossary-def">Ankle-Foot Orthosis — controls ankle and foot motion.</div></div>
+          <div class="glossary-item"><div class="glossary-term">K-Level</div><div class="glossary-def">Medicare Functional Classification K0–K4.</div></div>
+        </div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-head">📂 More Articles</div>
+        <div class="sidebar-body" id="more-articles"></div>
+      </div>
+    </aside>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- PRIVACY POLICY -->
+<div class="view" id="view-privacy">
+<div class="page-wrap">
+<div class="about-view">
+
+  <div class="about-hero" style="padding:32px 40px;">
+    <h1>Privacy <span>Policy</span></h1>
+    <p>Last updated: 31 May 2026 &nbsp;·&nbsp; This policy explains how ProOrthopedia collects, uses, and protects information when you visit our website.</p>
+  </div>
+
+  <div style="background:var(--white); border:1px solid var(--border); border-radius:14px; padding:36px; border-top:4px solid var(--yellow); display:flex; flex-direction:column; gap:28px;">
+
+    <!-- 1 -->
+    <div>
+      <div style="font-family:'DM Serif Display',serif; font-size:19px; color:var(--navy); margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+        <span style="background:var(--yellow); color:var(--navy); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px;">01</span>
+        Who We Are
+      </div>
+      <p style="font-size:14px; color:var(--gray-500); line-height:1.8;">
+        ProOrthopedia (<strong>proorthopedia.netlify.app</strong>) is an educational blogging platform focused on prosthetics and orthotics knowledge. We are not a medical provider and do not collect sensitive health data from our visitors.
+      </p>
+    </div>
+
+    <!-- 2 -->
+    <div>
+      <div style="font-family:'DM Serif Display',serif; font-size:19px; color:var(--navy); margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+        <span style="background:var(--yellow); color:var(--navy); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px;">02</span>
+        Information We Collect
+      </div>
+      <p style="font-size:14px; color:var(--gray-500); line-height:1.8; margin-bottom:10px;">We collect minimal information to operate and improve the site:</p>
+      <ul style="font-size:14px; color:var(--gray-500); line-height:1.9; padding-left:20px;">
+        <li><strong>Usage data</strong> — pages visited, time on site, browser type, and device type, collected anonymously via Google Analytics.</li>
+        <li><strong>Cookies</strong> — small text files placed on your device by Google AdSense and Google Analytics to serve relevant ads and analyse traffic.</li>
+        <li><strong>No personal registration data</strong> — ProOrthopedia does not require you to create an account or submit personal information to read content.</li>
+      </ul>
+    </div>
+
+    <!-- 3 -->
+    <div>
+      <div style="font-family:'DM Serif Display',serif; font-size:19px; color:var(--navy); margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+        <span style="background:var(--yellow); color:var(--navy); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px;">03</span>
+        Google AdSense & Advertising
+      </div>
+      <p style="font-size:14px; color:var(--gray-500); line-height:1.8;">
+        ProOrthopedia uses <strong>Google AdSense</strong> to display advertisements. Google may use cookies to serve ads based on your prior visits to this or other websites. You can opt out of personalised advertising by visiting <strong>www.aboutads.info</strong>. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to our website or other websites on the internet.
+      </p>
+    </div>
+
+    <!-- 4 -->
+    <div>
+      <div style="font-family:'DM Serif Display',serif; font-size:19px; color:var(--navy); margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+        <span style="background:var(--yellow); color:var(--navy); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px;">04</span>
+        How We Use Your Information
+      </div>
+      <ul style="font-size:14px; color:var(--gray-500); line-height:1.9; padding-left:20px;">
+        <li>To analyse site traffic and understand which content is most useful to visitors</li>
+        <li>To serve relevant advertisements through Google AdSense</li>
+        <li>To improve the website experience and content quality</li>
+        <li>We do <strong>not</strong> sell, trade, or transfer your data to any third parties beyond AdSense and Analytics</li>
+      </ul>
+    </div>
+
+    <!-- 5 -->
+    <div>
+      <div style="font-family:'DM Serif Display',serif; font-size:19px; color:var(--navy); margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+        <span style="background:var(--yellow); color:var(--navy); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px;">05</span>
+        Cookies
+      </div>
+      <p style="font-size:14px; color:var(--gray-500); line-height:1.8; margin-bottom:10px;">
+        Our site uses cookies for the following purposes:
+      </p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="background:var(--yellow-light); border:1px solid var(--yellow); border-radius:10px; padding:14px 16px;">
+          <div style="font-size:12px; font-weight:700; color:var(--navy); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">Analytics Cookies</div>
+          <div style="font-size:12.5px; color:var(--gray-500); line-height:1.6;">Google Analytics uses cookies to track anonymous usage statistics such as page views and session duration.</div>
+        </div>
+        <div style="background:var(--yellow-light); border:1px solid var(--yellow); border-radius:10px; padding:14px 16px;">
+          <div style="font-size:12px; font-weight:700; color:var(--navy); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">Advertising Cookies</div>
+          <div style="font-size:12.5px; color:var(--gray-500); line-height:1.6;">Google AdSense uses cookies to display personalised or contextual advertisements relevant to your interests.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div>
+      <div style="font-family:'DM Serif Display',serif; font-size:19px; color:var(--navy); margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+        <span style="background:var(--yellow); color:var(--navy); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px;">06</span>
+        Your Rights
+      </div>
+      <ul style="font-size:14px; color:var(--gray-500); line-height:1.9; padding-left:20px;">
+        <li>You may disable cookies in your browser settings at any time</li>
+        <li>You can opt out of Google personalised ads at <strong>adssettings.google.com</strong></li>
+        <li>Visitors from the EU/EEA have rights under GDPR including access, correction, and erasure of personal data</li>
+        <li>Visitors from California have rights under CCPA — we do not sell personal information</li>
+      </ul>
+    </div>
+
+    <!-- 7 -->
+    <div>
+      <div style="font-family:'DM Serif Display',serif; font-size:19px; color:var(--navy); margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+        <span style="background:var(--yellow); color:var(--navy); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px;">07</span>
+        Children's Privacy
+      </div>
+      <p style="font-size:14px; color:var(--gray-500); line-height:1.8;">
+        ProOrthopedia is intended for healthcare professionals, students, and adult learners. We do not knowingly collect personal information from children under the age of 13. If you believe a child has submitted personal information, please contact us so we can remove it promptly.
+      </p>
+    </div>
+
+    <!-- 8 -->
+    <div>
+      <div style="font-family:'DM Serif Display',serif; font-size:19px; color:var(--navy); margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+        <span style="background:var(--yellow); color:var(--navy); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px;">08</span>
+        Changes to This Policy
+      </div>
+      <p style="font-size:14px; color:var(--gray-500); line-height:1.8;">
+        We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated date. We encourage you to review this page periodically.
+      </p>
+    </div>
+
+    <!-- 9 -->
+    <div>
+      <div style="font-family:'DM Serif Display',serif; font-size:19px; color:var(--navy); margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+        <span style="background:var(--yellow); color:var(--navy); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px;">09</span>
+        Contact Us
+      </div>
+      <p style="font-size:14px; color:var(--gray-500); line-height:1.8;">
+        If you have any questions about this Privacy Policy or how your data is handled, please contact us at:<br><br>
+        <strong style="color:var(--navy);">📧 contact@proorthopedia.com</strong><br>
+        <strong style="color:var(--navy);">🌐 proorthopedia.netlify.app</strong>
+      </p>
+    </div>
+
+    <!-- AdSense note -->
+    <div style="background:var(--yellow-light); border:1.5px solid var(--yellow); border-radius:10px; padding:16px 20px;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--yellow-dark); margin-bottom:6px;">✅ AdSense Compliance</div>
+      <p style="font-size:13px; color:var(--navy); line-height:1.7;">
+        This Privacy Policy has been written to meet the requirements of <strong>Google AdSense</strong> program policies. It discloses the use of cookies, third-party advertising, and analytics in accordance with Google's requirements. We comply with all applicable privacy laws including GDPR and CCPA.
+      </p>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Pro<span>Orthopedia</span></div>
+      <div class="footer-tagline">Prosthetics · Orthotics · Rehabilitation Science</div>
+    </div>
+    <div class="footer-links">
+      <span class="footer-link" onclick="showView('feed')">Articles</span>
+      <span class="footer-link" onclick="showView('about')">About</span>
+      <span class="footer-link" onclick="showView('write')">Post Article</span>
+      <span class="footer-link" onclick="showView('privacy')">Privacy Policy</span>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-disclaimer">
+      ProOrthopedia is an educational platform for P&O professionals and students. Content is for informational purposes only and does not constitute medical advice. Always consult qualified practitioners for patient care decisions. © 2026 ProOrthopedia.
+    </div>
+  </div>
+</footer>
+
+<script>
+// Posts store — images stored as data URLs
+const posts = [];
+let currentFilter = 'All';
+let searchQuery = '';
+let imgDataUrl = '';
+
+function setDate() {
+  const d = new Date();
+  document.getElementById('topbar-date').textContent = d.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'long', year:'numeric' });
+}
+
+function previewImage(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    imgDataUrl = ev.target.result;
+    const preview = document.getElementById('img-preview');
+    const placeholder = document.getElementById('upload-placeholder');
+    preview.src = imgDataUrl;
+    preview.style.display = 'block';
+    placeholder.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  const map = { feed:0, about:1, privacy:2 };
+  const links = document.querySelectorAll('.nav-link');
+  if (map[name] !== undefined) links[map[name]].classList.add('active');
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+function filterPosts(cat, btn) {
+  currentFilter = cat;
+  searchQuery = '';
+  document.getElementById('search-input').value = '';
+  document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else document.querySelectorAll('.filter-chip').forEach(b => { if (b.textContent.trim() === cat) b.classList.add('active'); });
+  renderAll();
+}
+
+function handleSearch() {
+  searchQuery = document.getElementById('search-input').value.toLowerCase();
+  currentFilter = 'All';
+  document.querySelectorAll('.filter-chip').forEach((b,i) => b.classList.toggle('active', i===0));
+  renderAll();
+}
+
+function getFiltered() {
+  return posts.filter(p => {
+    const mc = currentFilter === 'All' || p.cat === currentFilter;
+    const ms = !searchQuery || p.title.toLowerCase().includes(searchQuery) || p.excerpt.toLowerCase().includes(searchQuery);
+    return mc && ms;
+  });
+}
+
+function renderAll() {
+  const filtered = getFiltered();
+
+  // Stats
+  document.getElementById('count-total').textContent = posts.length;
+  ['Prosthetics','Orthotics','Clinical','Research','Rehab'].forEach(c => {
+    const el = document.getElementById('c-' + c.toLowerCase());
+    if (el) el.textContent = posts.filter(p => p.cat === c).length;
+  });
+
+  // Result count
+  document.getElementById('result-count').textContent = filtered.length + ' article' + (filtered.length !== 1 ? 's' : '');
+
+  // Hero
+  const heroSec = document.getElementById('hero-section');
+  if (posts.length === 0) {
+    heroSec.innerHTML = '';
+  } else {
+    const p = posts[0];
+    const imgHtml = p.img
+      ? `<img class="hero-img" src="${p.img}" alt="${p.title}" />`
+      : `<div class="hero-img-placeholder"><div class="ph-icon">🦿</div><div class="ph-text">ProOrthopedia</div></div>`;
+    heroSec.innerHTML = `
+      <div class="hero-post" onclick="openPost(0)">
+        ${imgHtml}
+        <div class="hero-body">
+          <div class="hero-cat">⭐ ${p.cat}</div>
+          <div class="hero-title">${p.title}</div>
+          <div class="hero-excerpt">${p.excerpt}</div>
+          <div class="hero-meta">
+            <span>${p.author}</span>
+            <span class="meta-dot"></span>
+            <span>${p.readTime}</span>
+            <span class="meta-dot"></span>
+            <span>${p.date}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Grid
+  const grid = document.getElementById('posts-grid');
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">📋</div>
+        <div class="empty-state-text">${posts.length === 0 ? 'No articles yet. Be the first to post!' : 'No articles found for this filter.'}</div>
+        ${posts.length === 0 ? `<button class="empty-state-btn" onclick="showView('write')">+ Post First Article</button>` : ''}
+      </div>
+    `;
+    return;
+  }
+
+  // Skip index 0 if showing all (it's the hero)
+  const gridPosts = currentFilter === 'All' && !searchQuery ? filtered.slice(1) : filtered;
+
+  if (gridPosts.length === 0) {
+    grid.innerHTML = '';
+    return;
+  }
+
+  grid.innerHTML = gridPosts.map((p) => {
+    const idx = posts.indexOf(p);
+    const imgHtml = p.img
+      ? `<img class="post-card-img" src="${p.img}" alt="${p.title}" />`
+      : `<div class="post-card-img-placeholder">🦾</div>`;
+    return `
+      <div class="post-card" onclick="openPost(${idx})">
+        ${imgHtml}
+        <div class="post-card-body">
+          <span class="post-card-cat">${p.cat}</span>
+          <div class="post-card-title">${p.title}</div>
+          <div class="post-card-excerpt">${p.excerpt}</div>
+          <div class="post-card-meta">
+            <span>${p.date} · ${p.readTime}</span>
+            <span class="read-link">Read →</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function openPost(idx) {
+  const p = posts[idx];
+  const imgContainer = document.getElementById('pv-img-container');
+  imgContainer.innerHTML = p.img
+    ? `<img class="post-article-img" src="${p.img}" alt="${p.title}" />`
+    : `<div class="post-article-img-placeholder">🦾</div>`;
+
+  document.getElementById('pv-cat').textContent = p.cat;
+  document.getElementById('pv-title').textContent = p.title;
+  document.getElementById('pv-meta').innerHTML = `
+    <span>${p.author}</span>
+    <span class="meta-dot"></span>
+    <span>${p.readTime}</span>
+    <span class="meta-dot"></span>
+    <span>${p.date}</span>
+  `;
+  document.getElementById('pv-body').innerHTML = p.body.split('\n\n').map(para => `<p>${para.trim()}</p>`).join('');
+
+  // More articles sidebar
+  const others = posts.filter((_,i) => i !== idx).slice(0,4);
+  document.getElementById('more-articles').innerHTML = others.length ? others.map((_p, i) => {
+    const _idx = posts.indexOf(_p);
+    return `<div class="glossary-item" style="cursor:pointer" onclick="openPost(${_idx})">
+      <div class="glossary-term" style="font-size:12.5px;">${_p.title}</div>
+      <div class="glossary-def">${_p.cat} · ${_p.readTime}</div>
+    </div>`;
+  }).join('') : '<div style="font-size:12px;color:var(--gray-300);">No other articles yet.</div>';
+
+  showView('post');
+}
+
+function publishPost() {
+  const title = document.getElementById('inp-title').value.trim();
+  const cat = document.getElementById('inp-cat').value;
+  const body = document.getElementById('inp-body').value.trim();
+  const author = document.getElementById('inp-author').value.trim() || 'ProOrthopedia';
+
+  if (!title || !body) { alert('Please fill in the title and article body.'); return; }
+
+  const words = body.split(/\s+/).length;
+  const readTime = Math.max(1, Math.round(words / 200)) + ' min read';
+  const d = new Date();
+  const date = d.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+
+  posts.unshift({
+    cat, title,
+    excerpt: body.replace(/\n/g,' ').substring(0, 200) + (body.length > 200 ? '...' : ''),
+    body, author, readTime, date,
+    img: imgDataUrl || ''
+  });
+
+  // Reset form
+  document.getElementById('inp-title').value = '';
+  document.getElementById('inp-body').value = '';
+  document.getElementById('inp-author').value = '';
+  document.getElementById('img-file').value = '';
+  document.getElementById('img-preview').style.display = 'none';
+  document.getElementById('upload-placeholder').style.display = 'block';
+  imgDataUrl = '';
+
+  const banner = document.getElementById('success-banner');
+  banner.style.display = 'block';
+  setTimeout(() => { banner.style.display = 'none'; }, 4000);
+
+  currentFilter = 'All';
+  document.querySelectorAll('.filter-chip').forEach((b,i) => b.classList.toggle('active', i===0));
+  renderAll();
+  showView('feed');
+}
+
+setDate();
+renderAll();
+</script>
+</body>
+</html>
